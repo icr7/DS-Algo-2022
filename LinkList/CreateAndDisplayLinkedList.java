@@ -40,7 +40,7 @@ class LinkedList{
 		}
 		else {
 			tail.next=newNode;
-			tail=newNode;
+			tail=tail.next;
 		}		
 	}
 	
