@@ -20,19 +20,22 @@ public class InsertingAnywhere {
 
 		System.out.println("Before inserting element");
 		list.display();
-		System.out.println("Size: "+list.size());
+		System.out.println("Size: " + list.size());
 
-		System.out.println("Enter element you want to push: ");
+		System.out.print("Enter element you want to push: ");
 		int element = sc.nextInt();
 
-		System.out.println("Enter postion where you want to push: ");
+		System.out.print("Enter postion where you want to push: ");
 		int pos = sc.nextInt();
 
-		list.push(element, pos);
-
-		System.out.println("After inserting element");
-		list.display();
-		System.out.println("Size: "+list.size());
+		if (pos > 0 && pos <= list.size() + 1) {
+			list.push(element, pos);
+			System.out.println("After inserting element");
+			list.display();
+			System.out.println("Size: " + list.size());
+		} else {
+			System.out.println("Invaild position");
+		}
 
 	}// main
 
@@ -51,7 +54,8 @@ class LinkedList {
 
 	Node head = null;
 	Node tail = null;
-    int size=0;
+	int size = 0;
+
 	public void push(int data) {
 		Node newNode = new Node(data);
 		if (head == null) {
@@ -93,7 +97,7 @@ class LinkedList {
 			currentNode = currentNode.nextNode;
 		}
 	}
-	
+
 	public int size() {
 		return this.size;
 	}
