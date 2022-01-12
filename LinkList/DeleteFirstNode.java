@@ -12,9 +12,9 @@ public class DeleteFirstNode {
 		System.out.print("list before deletion: ");
 		list.display();
 		int i = 1;
-		while(list.getNextNode()!=null) {
+		while (list.getNextNode() != null) {
 			list.deleteTop();
-			System.out.print("\nlist after "+i+" Top deletion: ");
+			System.out.print("\nlist after " + i + " Top deletion: ");
 			list.display();
 			i++;
 		}
@@ -33,8 +33,8 @@ class LinkedList {
 			this.nextNode = null;
 		}
 	}
-	public Node getNextNode()
-	{
+
+	public Node getNextNode() {
 		return head.nextNode;
 	}
 
@@ -51,18 +51,20 @@ class LinkedList {
 			tail = tail.nextNode;
 		}
 	}
+
 	public void display() {
 		Node currentNode = head;
-		
-		while(currentNode!=null) {
-			System.out.print(currentNode.data+" ");
-			currentNode=currentNode.nextNode;
+
+		while (currentNode != null) {
+			System.out.print(currentNode.data + " ");
+			currentNode = currentNode.nextNode;
 		}
-		
+
 	}
-	public  void deleteTop() {
-		Node currentNode=head;
-		head=currentNode.nextNode;
-		currentNode=null;
+
+	public void deleteTop() {
+		Node currentNode = head;
+		head = currentNode.nextNode;
+		currentNode = null;
 	}
 }
