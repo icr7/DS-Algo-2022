@@ -2,6 +2,7 @@
 public class HashMap1 {
     public static void main(String[] args) {
         Map myMap = new Map();
+        myMap.add("Ishwar", "APS");
         myMap.add("Ishwar", "KVS");
         myMap.add("Ishwar", "GBPIET");
         myMap.add("Ishwar", "TCS");
@@ -31,22 +32,20 @@ public class HashMap1 {
                 hash = hash * -1;
             }
             int hashIndex = hash % (10 - 1);
-            while (true) {
-                if (myNode[hashIndex] == null) {
-                    myNode[hashIndex] = new Node(key, value, hash);
-                    break;
-                } else if (myNode[hashIndex].next == null) {
-                    myNode[hashIndex].next = new Node(key, value, hash);
-                    break;
-
-                } else {
-                    Node currNode = myNode[hashIndex].next;
-                    if (currNode.next == null) {
-                        currNode.next = new Node(key, value, hash);
+            if (myNode[hashIndex] == null) {
+                myNode[hashIndex] = new Node(key, value, hash);
+            } else {
+                Node currNode = myNode[hashIndex];
+                while (true) {
+                    if(currNode.next==null){
+                        currNode.next=new Node(key, value, hash);
                         break;
                     }
-                }
+                    else{
+                        currNode=currNode.next;
+                    }
             }
+        }
         }
 
 
