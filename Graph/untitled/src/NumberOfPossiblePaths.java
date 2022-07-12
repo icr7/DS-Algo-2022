@@ -29,7 +29,7 @@ public class NumberOfPossiblePaths {
             System.out.println(i+"---> "+graph.get(i));
 
         System.out.println("-----------------paths----------------------");
-        findPath(1,5, new ArrayList<>());
+        findPath(1,4, new ArrayList<>());
         for( ArrayList<Integer> path: listOfPaths){
             System.out.println(path);
         }
@@ -63,7 +63,7 @@ public class NumberOfPossiblePaths {
 
     public static void findPath(int source, int destination, ArrayList<Integer> path){
         if(source == destination){
-            path.add(5);
+            path.add(destination);
             listOfPaths.add((ArrayList<Integer>) path.clone());
             path.remove(path.size()-1);
         }
