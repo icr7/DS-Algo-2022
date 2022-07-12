@@ -24,7 +24,7 @@ public class BfsGraph {
             addEdge(5, 3);
             addEdge(5, 4);
 
-       bfs(4);
+       bfs(3);
     }
     public static void addEdge(int source, int destination){
         if(!graph.get(source).contains(destination))
@@ -35,20 +35,21 @@ public class BfsGraph {
     }
 
     public static void bfs(int x){
-         boolean[] visited= new boolean[6];
+        boolean[] visited= new boolean[6];
+        Queue<Integer> queue = new LinkedList<>();
          visited[x]=true;
-         Queue<Integer> queue = new LinkedList<>();
          queue.add(x);
 
-         do{
-             for(int i=0;i<graph.get(queue.peek()).size();i++){
-                 if(!visited[graph.get(queue.peek()).get(i)]){
-                     queue.add(graph.get(queue.peek()).get(i));
-                     visited[graph.get(queue.peek()).get(i)]=true;
+        while(queue.size()!=0){
+            x=queue.poll();
+            System.out.print(x+", ");
+             for(int i=0;i<graph.get(x).size();i++){
+                 if(!visited[graph.get(x).get(i)]){
+                     queue.add(graph.get(x).get(i));
+                     visited[graph.get(x).get(i)]=true;
                  }
              }
-             System.out.print(queue.poll()+", ");
          }
-         while(queue.size()!=0);
+
     }
 }
