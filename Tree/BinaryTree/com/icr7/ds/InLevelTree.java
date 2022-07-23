@@ -47,12 +47,8 @@ class Tree{
             root=new TreeNode(data);
             this.inserted=true;
         }
-        else if(level==1 ){
-            if(root!=null){
+        else if(level==1 && root!=null){
                 return root;
-            }
-            root=new TreeNode(data);
-            this.inserted=true;
         }
         else{
 
