@@ -39,12 +39,13 @@ class Tree2{
             root= new Node(data);
             queue.add(root);
         }else{
-            Node tempRoot= new Node(data);
-            queue.add(tempRoot);
             if(queue.peek().left==null){
-                queue.peek().left=tempRoot;
-            } else if (queue.peek().right==null) {
-                queue.peek().right=tempRoot;
+                queue.peek().left=new Node(data);
+                queue.add(queue.peek().left);
+            }
+            else if(queue.peek().right==null){
+                queue.peek().right=new Node(data);
+                queue.add(queue.peek().right);
                 queue.poll();
             }
         }
@@ -52,8 +53,8 @@ class Tree2{
 
     Queue<Node> printQ ;
     public void printInLevel(){
-         printQ=new LinkedList<>();
-         printQ();
+        printQ=new LinkedList<>();
+        printQ();
     }
     public void printQ() {
         printQ.add(root);
