@@ -1,6 +1,8 @@
 package com.icr7.ds;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 public class InLevelBinaryTreeUsingQueue {
@@ -9,7 +11,7 @@ public class InLevelBinaryTreeUsingQueue {
         for(int i=1;i<16;i++){
             tree.insertInLevel(i);
         }
-        tree.printInLevel();
+        System.out.println(tree.printInLevel());
     }
 }
 class Tree2{
@@ -51,24 +53,21 @@ class Tree2{
         }
     }
 
-    Queue<Node> printQ ;
-    public void printInLevel(){
-        printQ=new LinkedList<>();
-        printQ();
-    }
-    public void printQ() {
-        printQ.add(root);
-        while (printQ.size() != 0) {
-            if(printQ.peek().left!=null){
-                printQ.add(printQ.peek().left);
+    public List<Integer> printInLevel(){
+        List<Integer> list = new ArrayList<>();
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+        list.add(root.data);
+        while(queue.size()!=0){
+            if(queue.peek().left!=null){
+                queue.add(queue.peek().left);
             }
-            if(printQ.peek().right!=null){
-                printQ.add(printQ.peek().right);
+            if(queue.peek().right!=null){
+                queue.add(queue.peek().right);
             }
-            System.out.print(printQ.peek().data+", ");
-            printQ.poll();
-
+            list.add(queue.peek().data);
+            queue.poll();
         }
-
+       return list;
     }
 }
