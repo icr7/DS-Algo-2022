@@ -15,6 +15,7 @@ public class MaxMinHeightofBinaryTree {
 }
 class Tree3{
     Node root;
+    Queue<Node> queue = new LinkedList<>();
     class Node{
         int data;
         Node left, right;
@@ -34,7 +35,7 @@ class Tree3{
         }
     }
 
-    Queue<Node> queue = new LinkedList<>();
+
     public void insertInLevel(int data){
         if(root==null){
             root= new Node(data);
