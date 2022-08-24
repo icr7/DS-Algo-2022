@@ -68,19 +68,53 @@ class Tree7{
         levelOrder(root.right, map, level+1);
     }
 
-    public HashMap getTopView(){
-        HashMap<Integer,Integer> map = new HashMap<>();
-        getTopView(root,map,0, 0);
-        return map;
+//    public HashMap getTopView(){
+//        HashMap<Integer,Integer> map = new HashMap<>();
+//        getTopView(root,map,0, 0);
+//        return map;
+//    }
+//    public void getTopView(Node root, HashMap<Integer, Integer> map,Integer level, Integer far){
+//        if (root == null) {
+//            return;
+//        }
+//        if(map.get(far)==null){
+//            map.put(far,root.data);
+//        }
+//        getTopView(root.left,map,level+1, far-1);
+//        getTopView(root.right,map,level+1, far+1);
+//    }
+
+    public List<Integer> getTopView(){
+        Queue<Pair> topQueue= new LinkedList<>();
+        Map<Integer,Integer> map= new TreeMap<>();
+        topQueue.add(new Pair(0,root));
+        while(!topQueue.isEmpty()){
+            if(topQueue.peek().node.left!=null){
+                topQueue.add(new Pair(topQueue.peek().hd-1,topQueue.peek().node.left));
+            }
+            if(topQueue.peek().node.right!=null){
+                topQueue.add(new Pair(topQueue.peek().hd+1,topQueue.peek().node.right));
+            }
+            Pair pair=topQueue.poll();
+            if(!map.containsKey(pair.hd)){
+                map.put(pair.hd,pair.node.data);
+            }
+
+        }
+        List<Integer>topViewList= new ArrayList<>();
+        for(Map.Entry<Integer,Integer> entry : map.entrySet()){
+            topViewList.add(entry.getValue());
+        }
+
+        return topViewList;
     }
-    public void getTopView(Node root, HashMap<Integer, Integer> map,Integer level, Integer far){
-        if (root == null) {
-            return;
+
+    class Pair{
+        int hd;
+        Node node;
+        Pair(int hd, Node node){
+            this.hd=hd;
+            this.node=node;
         }
-        if(map.get(far)==null){
-            map.put(far,root.data);
-        }
-        getTopView(root.left,map,level+1, far-1);
-        getTopView(root.right,map,level+1, far+1);
     }
 }
