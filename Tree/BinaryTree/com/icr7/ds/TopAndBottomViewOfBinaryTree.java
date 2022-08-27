@@ -8,7 +8,8 @@ public class TopAndBottomViewOfBinaryTree {
         for (int i=1;i<=10;i++)
         tree.add(i);
 
-        System.out.println(tree.getTopView());
+        System.out.println("Top View : "+tree.getTopView());
+        System.out.println("Bottom View : "+tree.getBottomView());
     }
 }
 class Tree7{
@@ -105,6 +106,28 @@ class Tree7{
         map.entrySet().stream().forEach(e -> topViewList.add(e.getValue()));
 
         return topViewList;
+    }
+
+    public List<Integer> getBottomView(){
+        List<Integer> bottomViewList = new ArrayList<>();
+        Queue<Pair> bottomQueue = new LinkedList<>();
+        Map<Integer,Integer> map = new TreeMap<>();
+        bottomQueue.add(new Pair(0, root));
+
+        while(!bottomQueue.isEmpty()){
+            if(bottomQueue.peek().node.left!=null){
+                bottomQueue.add(new Pair(bottomQueue.peek().hd-1, bottomQueue.peek().node.left));
+            }
+            if(bottomQueue.peek().node.right!=null){
+                bottomQueue.add((new Pair(bottomQueue.peek().hd+1, bottomQueue.peek().node.right)));
+            }
+            Pair pair = bottomQueue.poll();
+            map.put(pair.hd, pair.node.data);
+        }
+
+        map.entrySet().stream().forEach(e -> bottomViewList.add(e.getValue()));
+        Collections.reverse(bottomViewList);
+        return bottomViewList;
     }
 
     class Pair{
