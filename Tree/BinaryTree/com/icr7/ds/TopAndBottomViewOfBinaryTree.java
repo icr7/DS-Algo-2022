@@ -102,9 +102,7 @@ class Tree7{
 
         }
         List<Integer>topViewList= new ArrayList<>();
-        for(Map.Entry<Integer,Integer> entry : map.entrySet()){
-            topViewList.add(entry.getValue());
-        }
+        map.entrySet().stream().forEach(e -> topViewList.add(e.getValue()));
 
         return topViewList;
     }
