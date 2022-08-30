@@ -11,7 +11,7 @@ public class InLevelBinaryTreeUsingQueue {
         for(int i=1;i<16;i++){
             tree.insertInLevel(i);
         }
-        System.out.println(tree.printInLevel());
+        System.out.println("-->"+tree.printInLevel());
     }
 }
 class Tree2{
@@ -36,6 +36,7 @@ class Tree2{
     }
 
     Queue<Node> queue = new LinkedList<>();
+    int visitCount=0;
     public void insertInLevel(int data){
         if(root==null){
             root= new Node(data);
@@ -48,7 +49,12 @@ class Tree2{
             else if(queue.peek().right==null){
                 queue.peek().right=new Node(data);
                 queue.add(queue.peek().right);
+            }
+
+            visitCount++;
+            if(visitCount==2){
                 queue.poll();
+                visitCount=0;
             }
         }
     }
@@ -57,7 +63,6 @@ class Tree2{
         List<Integer> list = new ArrayList<>();
         Queue<Node> queue = new LinkedList<>();
         queue.add(root);
-        list.add(root.data);
         while(queue.size()!=0){
             if(queue.peek().left!=null){
                 queue.add(queue.peek().left);
